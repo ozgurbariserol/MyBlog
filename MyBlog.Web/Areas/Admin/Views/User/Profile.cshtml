@@ -1,0 +1,84 @@
+﻿@model UserProfileDto
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Profil Ayarları/</span> Profilim
+    </h4>
+
+    <div class="row">
+        <div class="col-md-12">
+            
+            <div class="card mb-4">
+                <h5 class="card-header">Profil Detayları</h5>
+                <!-- Account -->
+
+                <hr class="my-0">
+                <div class="card-body">
+                    <form asp-controller="User" asp-action="Profile" method="POST" >
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="FirstName" class="form-label">İsim</label>
+                                <input asp-for="FirstName" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="FirstName"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="LastName" class="form-label">Soyisim</label>
+                                <input asp-for="LastName" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="LastName"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="Email" class="form-label">Mail Adresi</label>
+                                <input asp-for="Email" type="email" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="Email"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
+                                <input asp-for="PhoneNumber" type="tel" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="PhoneNumber"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="LinkedInLink" class="form-label">LinkedIn Link</label>
+                                <input asp-for="LinkedInLink" type="text" class="form-control" type="text" autofocus="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="InstagramLink" class="form-label">Instagram Link</label>
+                                <input asp-for="InstagramLink" type="text" class="form-control" type="text" autofocus="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="GithubLink" class="form-label">GithubLink Link</label>
+                                <input asp-for="GithubLink" type="text" class="form-control" type="text" autofocus="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="ContactMail" class="form-label">İletişim Maili</label>
+                                <input asp-for="ContactMail" type="text" class="form-control" type="text" autofocus="">
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="CurrentPassword" class="form-label">Mevcut Parola</label>
+                                <input asp-for="CurrentPassword" type="password" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="CurrentPassword"></span>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label asp-for="NewPassword" class="form-label">Yeni Parola (Opsiyonel)</label>
+                                <input asp-for="NewPassword" type="password" class="form-control" type="text" autofocus="">
+                                <span asp-validation-for="NewPassword"></span>
+                            </div>
+
+                         
+                        </div>
+                        <div class="mt-2">
+                            <button type="submit" class="btn btn-primary me-2">Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /Account -->
+            </div>
+           
+        </div>
+    </div>
+
+
+</div>

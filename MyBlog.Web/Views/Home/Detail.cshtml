@@ -1,0 +1,53 @@
+﻿
+@model ArticleDto
+
+
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-12">
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                    @if (Model.Image?.FileName != null)
+                                    {                                      
+                                    <img src="/images/@Model.Image.FileName" alt="">
+                                    }
+
+                                    </div>
+                                    <div class="down-content" >
+                                        <a href="#"><h4>@Model.Title</h4></a>
+                                        <ul class="post-info" style="margin-bottom:12px">
+                                        <li style="font-style:italic">@Model.User.FirstName @Model.User.LastName</li>
+                                        <li class="float-end">@Model.CreatedDate.ToString("dd/MM/yyyy")</li>
+                                        </ul>
+                                        <div style="display:inline;width:25px"></div>
+                                    <div style="font-size:1.3rem;color:#333;text-indent: 20px;">
+                                     @Html.Raw(MarkDownHelper.MarkDown(Model.Content)) 
+                                        </div>
+                                        <div class="post-options mt-3">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <ul class="post-tags">
+                                                        <li><i class="fa fa-tags"></i></li>
+                                                    <li><a href="#">@Model.Category.Name</a></li>
+                                                    </ul>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+</section>

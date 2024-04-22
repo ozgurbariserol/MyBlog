@@ -1,0 +1,68 @@
+﻿@model List<UserDto>
+
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Kullanıcı Yönetimi /</span> Kullanıcılar
+    </h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <div class="table-responsive text-nowrap m-3">
+            <a class="btn btn-success mb-3" asp-area="Admin" asp-controller="User" asp-action="Add">Kullanıcı ekle <i class="bx bx-plus"></i></a>
+            <table id="usersTable" class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>İsim</th>
+                        <th>Soyisim</th>
+                        <th>Email</th>
+                        <th>Telefon Numarası</th>
+                        <th>Rol</th>
+                        <th>Email Doğrulaması</th>
+                        <th>Bağlantı Hataları</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr name="@user.Id">
+                            <th>@user.FirstName</th>
+                            <th>@user.LastName</th>
+                            <th>@user.Email</th>
+                            <th>@user.PhoneNumber</th>
+                            <th>@user.Role</th>
+                            <th>@(user.EmailConfirmed ? "Doğrulanmış" :"Doğrulanmamış")</th>
+                            <th>@user.AccessFailedCount</th>
+                            <th>
+                                <a class="btn btn-primary btn-sm" data-id="@user.Id" asp-area="Admin" asp-controller="User" asp-action="Update" asp-route-userId="@user.Id"><i class="bx bxs-edit"></i></a>
+                                <a class="btn btn-danger btn-sm" data-id="@user.Id" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-userId="@user.Id"><i class="bx bxs-minus-circle"></i></a>
+                            </th>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>İsim</th>
+                        <th>Soyisim</th>
+                        <th>Email</th>
+                        <th>Telefon Numarası</th>
+                        <th>Rol</th>
+                        <th>Email Doğrulaması</th>
+                        <th>Bağlantı Hataları</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+
+    <hr class="my-5">
+</div>
+@section Scripts {
+    <script src="~/js/UserIndex.js" type="application/ecmascript"></script>
+}

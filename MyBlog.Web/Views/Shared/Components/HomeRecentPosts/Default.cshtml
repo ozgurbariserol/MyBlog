@@ -1,0 +1,25 @@
+﻿@model List<ArticleDto>
+
+
+<div class="sidebar-item recent-posts">
+    <div class="sidebar-heading">
+        <h2 style ="color:darkcyan">En Son Paylaşılan Yazılar</h2>
+    </div>
+    <div class="content">
+        <ul>
+            @foreach (var article in Model)
+            {          
+            <li>
+                <a asp-action="Detail" asp-controller="Home" asp-route-id="@article.Id">
+                        <h5>@article.Title</h5>
+                        <div class="d-flex" style="justify-content:space-between">
+                        <span class="text-dark">@article.CreatedDate.ToString("MMMM dd, yyyy", new System.Globalization.CultureInfo("tr-TR"))</span>
+                            <span class="text-dark">@article.User.FirstName @article.User.LastName</span>
+                        </div>
+                </a>
+            </li>
+            }
+           
+        </ul>
+    </div>
+</div>

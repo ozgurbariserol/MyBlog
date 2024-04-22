@@ -1,0 +1,86 @@
+﻿@model List<UserDto>
+
+<head>
+    <style>
+
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom:30px;
+        }
+
+            .card h2 {
+                margin-top: 0;
+                margin-bottom:30px;
+            }
+
+        .social-links {
+            list-style-type: none;
+            padding: 0px;
+        }
+
+            .social-links li {
+                margin-bottom: 10px;
+            }
+
+            .social-links a {
+                text-decoration: none;
+                color: #555;
+                font-size: 16px;
+            }
+
+                .social-links a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<section class="blog-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @foreach (var item in Model)
+                            {
+                                @if (item.InstagramLink != null && item.LinkedInLink != null && item.ContactMail != null )
+                                {                                   
+                                <div class="card">
+                                    <h2>@item.FirstName @item.LastName</h2>
+                                    <ul class="social-links">
+
+                                        @if(item.LinkedInLink != null)
+                                        {
+                                        <li><i style="font-size:22px;color:blue;" class="fa-brands fa-linkedin"></i><strong> LinkedIn: </strong> <a href="@("https://" + item.LinkedInLink)" target="_blank">@item.LinkedInLink</a></li>
+                                        }
+                                            @if (item.GithubLink != null)
+                                            {
+                                                <li><i style="font-size:22px" class="fa-solid fa-envelope"></i><strong>  Github: </strong> <a href="@("https://" + item.GithubLink)">@item.GithubLink</a></li>
+                                            }
+                                        @if (item.InstagramLink != null)
+                                        {
+                                        <li><i style="font-size:22px;color: #ff0019;" class="fa-brands fa-instagram"></i><strong> Instagram: </strong> <a href="@("https://" + item.InstagramLink)" target="_blank">@item.InstagramLink</a></li>
+                                        }
+                                        @if(item.InstagramLink != null)
+                                        {
+                                        <li><i style="font-size:22px" class="fa-solid fa-envelope"></i><strong>  Email: </strong> <a href="@("mailto:"+item.ContactMail)">@item.ContactMail</a></li>
+                                        }
+                                          
+                                 
+                                    </ul>
+                                </div>
+                                }
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+      
+        </div>
+    </div>
+</section>

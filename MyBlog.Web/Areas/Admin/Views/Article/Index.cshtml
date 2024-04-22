@@ -1,0 +1,88 @@
+﻿
+@model List<ArticleDto>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Makale Yönetimi /</span> Makaleler
+    </h4>
+
+    <!-- Basic Bootstrap Table -->
+    <div class="card">
+        <div class="table-responsive text-nowrap m-5">
+
+            @{
+                @if (!User.IsInRole($"{RoleConsts.User}"))
+                {
+                    <a class="btn btn-success mb-3" asp-area="Admin" asp-controller="Article" asp-action="Add">Makale ekle <i class="bx bx-plus"></i></a>
+                }
+            }
+
+            
+            <table id="articlesTable" class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Kategori</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan</th>
+                        <th>Durum</th>
+                        @{
+                            @if (!User.IsInRole($"{RoleConsts.User}"))
+                            {
+                                <th>İşlemler</th>
+
+                            }
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var article in Model)
+                    {
+                        <tr name="@article.Id">
+                            <th>@article.Title</th>
+                            <th>@article.Category.Name</th>
+                            <th>@article.CreatedDate.ToShortDateString()</th>
+                            <th>@article.CreatedBy</th>
+                            <th>@(article.IsDeleted ? "Aktif değil":"Aktif")</th>
+                            @{
+                                @if (!User.IsInRole($"{RoleConsts.User}"))
+                                {
+                                    <th>
+                                        <a class="btn btn-primary btn-sm" data-id="@article.Id" asp-area="Admin" asp-controller="Article" asp-action="Update" asp-route-articleId="@article.Id"><i class="bx bxs-edit"></i></a>
+                                        <a class="btn btn-danger btn-sm" data-id="@article.Id" asp-area="Admin" asp-controller="Article" asp-action="Delete" asp-route-articleId="@article.Id"><i class="bx bxs-minus-circle"></i></a>
+
+                                    </th>
+                                }
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Başlık</th>
+                        <th>Kategori</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan</th>
+                        <th>Durum</th>
+                        @{
+                            @if (!User.IsInRole($"{RoleConsts.User}"))
+                            {
+                        <th>İşlemler</th>
+
+                            }
+                        }
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!--/ Basic Bootstrap Table -->
+
+    <hr class="my-5">
+</div>
+@section Scripts {
+    <script src="~/js/articleIndex.js" type="application/ecmascript"></script>
+}
